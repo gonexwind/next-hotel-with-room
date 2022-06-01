@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardElevation="10dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -17,17 +18,17 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="135dp"
+                android:layout_width="155dp"
                 android:layout_height="135dp"
                 android:contentDescription="@string/image_desc"
                 android:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <com.google.android.material.card.MaterialCardView
+                style="@style/MyCardView"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/main_color"
-                style="@style/MyCardView">
+                app:cardBackgroundColor="@color/main_color">
 
                 <TextView
                     android:id="@+id/cityTextView"
@@ -51,9 +52,9 @@
         </FrameLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+            android:layout_margin="13dp"
             android:orientation="vertical">
 
             <TextView
@@ -72,6 +73,16 @@
                 tools:text="4.5 ⭐" />
 
             <TextView
+                android:id="@+id/descTextView"
+                style="@style/TextView.Card.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                tools:text="@tools:sample/lorem/random" />
+
+            <TextView
                 android:id="@+id/priceTextView"
                 style="@style/TextView.Card.Price"
                 android:layout_width="match_parent"
@@ -81,4 +92,4 @@
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
