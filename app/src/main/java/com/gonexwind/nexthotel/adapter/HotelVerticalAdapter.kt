@@ -7,8 +7,8 @@ import coil.load
 import com.gonexwind.nexthotel.databinding.ItemVerticalBinding
 import com.gonexwind.nexthotel.model.Hotel
 
-class HotelAdapter(private val listHotel: List<Hotel>) :
-    RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
+class HotelVerticalAdapter(private val listHotel: List<Hotel>) :
+    RecyclerView.Adapter<HotelVerticalAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -23,7 +23,7 @@ class HotelAdapter(private val listHotel: List<Hotel>) :
     inner class ViewHolder(private val binding: ItemVerticalBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(hotel: Hotel) {
-            val (id, name, city, imageUrl, rating, description, priceRange) = hotel
+            val (_, name, city, imageUrl, rating, description, priceRange) = hotel
             binding.apply {
                 imageView.load(imageUrl)
                 nameTextView.text = name
