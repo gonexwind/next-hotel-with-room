@@ -3,7 +3,6 @@
 
     <style name="TextView">
         <item name="android:fontFamily">@font/poppins</item>
-        <item name="android:textColor">@color/text_color</item>
     </style>
 
     <style name="TextView.Header">
@@ -12,19 +11,21 @@
     </style>
 
     <style name="TextView.Card">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="TextView.Card.Title">
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
     <style name="TextView.Card.Subtitle">
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/poppins_light</item>
     </style>
 
     <style name="TextView.Card.Top">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -47,7 +48,7 @@
     </style>
 
     <style name="TextView.Detail.Top">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -63,6 +64,6 @@
 
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopLeft">12dp</item>
     </style>
 </resources>
