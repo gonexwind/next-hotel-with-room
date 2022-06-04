@@ -68,10 +68,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading)
-            binding.progressBar.visibility = View.VISIBLE
-        else
-            binding.progressBar.visibility = View.GONE
+        when {
+            isLoading -> binding.progressBar.visibility = View.VISIBLE
+            else -> binding.progressBar.visibility = View.GONE
+        }
     }
 
 }

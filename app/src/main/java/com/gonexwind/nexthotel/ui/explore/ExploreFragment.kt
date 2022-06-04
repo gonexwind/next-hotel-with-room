@@ -1,27 +1,21 @@
 package com.gonexwind.nexthotel.ui.explore
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.gonexwind.nexthotel.adapter.ExploreAdapter
-import com.gonexwind.nexthotel.adapter.HotelVerticalAdapter
-import com.gonexwind.nexthotel.api.ApiConfig
 import com.gonexwind.nexthotel.databinding.FragmentExploreBinding
 import com.gonexwind.nexthotel.model.Hotel
-import com.gonexwind.nexthotel.model.HotelsResponse
-import com.gonexwind.nexthotel.ui.home.HomeFragmentDirections
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ExploreFragment : Fragment() {
 
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by activityViewModels<ExploreViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,51 +33,28 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getHotels()
+        viewModel.listHotel.observe(requireActivity()) { setHotelData(it) }
+        viewModel.isLoading.observe(requireActivity()) { showLoading(it) }
     }
 
-    private fun getHotels() {
-        showLoading(true)
-        val client = ApiConfig.getApiService().getListHotel()
-        client.enqueue(object : Callback<HotelsResponse> {
-            override fun onResponse(
-                call: Call<HotelsResponse>,
-                response: Response<HotelsResponse>
-            ) {
-                showLoading(false)
-                val responseBody = response.body()
-                if (responseBody != null) {
-                    val exploreAdapter = ExploreAdapter(responseBody.data)
-                    binding.verticalRecyclerView.adapter = exploreAdapter
+    private fun setHotelData(listHotel: List<Hotel>) {
+        val adapter = ExploreAdapter(listHotel)
+        binding.verticalRecyclerView.adapter = adapter
 
-                    exploreAdapter.setOnItemClickCallback(object :
-                        ExploreAdapter.OnItemClickCallback {
-                        override fun onItemClicked(data: Hotel) {
-                            val toDetail = ExploreFragmentDirections.actionNavigationExploreToDetailFragment(data)
-                            view?.findNavController()?.navigate(toDetail)
-                        }
-                    })
-
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<HotelsResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(TAG, "onFailure: ${t.message}")
+        adapter.setOnItemClickCallback(object :
+            ExploreAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Hotel) {
+                val toDetail =
+                    ExploreFragmentDirections.actionNavigationExploreToDetailFragment(data)
+                view?.findNavController()?.navigate(toDetail)
             }
         })
     }
 
-    fun showLoading(isLoading: Boolean) {
-        if (isLoading)
-            binding.progressBar.visibility = View.VISIBLE
-        else
-            binding.progressBar.visibility = View.GONE
-    }
-
-    companion object {
-        private const val TAG = "ExploreFragment"
+    private fun showLoading(isLoading: Boolean) {
+        when {
+            isLoading -> binding.progressBar.visibility = View.VISIBLE
+            else -> binding.progressBar.visibility = View.GONE
+        }
     }
 }
