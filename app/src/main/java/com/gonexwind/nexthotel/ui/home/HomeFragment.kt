@@ -1,28 +1,22 @@
 package com.gonexwind.nexthotel.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.gonexwind.nexthotel.adapter.HotelHorizontalAdapter
 import com.gonexwind.nexthotel.adapter.HotelVerticalAdapter
-import com.gonexwind.nexthotel.api.ApiConfig
 import com.gonexwind.nexthotel.databinding.FragmentHomeBinding
 import com.gonexwind.nexthotel.model.Hotel
-import com.gonexwind.nexthotel.model.HotelsResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by activityViewModels<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,65 +35,43 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getHotels()
+        viewModel.listHotel.observe(requireActivity()) { setHotelData(it) }
+        viewModel.isLoading.observe(requireActivity()) { showLoading(it) }
     }
 
-    private fun getHotels() {
-        showLoading(true)
-        val client = ApiConfig.getApiService().getListHotel()
-        client.enqueue(object : Callback<HotelsResponse> {
-            override fun onResponse(
-                call: Call<HotelsResponse>,
-                response: Response<HotelsResponse>
-            ) {
-                showLoading(false)
-                val responseBody = response.body()
-                if (responseBody != null) {
-                    val verticalAdapter = HotelVerticalAdapter(responseBody.data)
-                    val horizontalAdapter = HotelHorizontalAdapter(responseBody.data)
-                    binding.apply {
-                        verticalRecyclerView.adapter = verticalAdapter
-                        horizontalRecyclerView.adapter = horizontalAdapter
-                    }
+    private fun setHotelData(listHotel: List<Hotel>) {
+        val verticalAdapter = HotelVerticalAdapter(listHotel)
+        val horizontalAdapter = HotelHorizontalAdapter(listHotel)
 
-                    verticalAdapter.setOnItemClickCallback(object :
-                        HotelVerticalAdapter.OnItemClickCallback {
-                        override fun onItemClicked(data: Hotel) {
-                            val toDetail =
-                                HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
-                            view?.findNavController()?.navigate(toDetail)
-                        }
-                    })
+        binding.apply {
+            verticalRecyclerView.adapter = verticalAdapter
+            horizontalRecyclerView.adapter = horizontalAdapter
+        }
 
-                    horizontalAdapter.setOnItemClickCallback(object :
-                        HotelHorizontalAdapter.OnItemClickCallback {
-                        override fun onItemClicked(data: Hotel) {
-                            val toDetail =
-                                HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
-                            view?.findNavController()?.navigate(toDetail)
-                        }
-                    })
-
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
+        verticalAdapter.setOnItemClickCallback(object :
+            HotelVerticalAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Hotel) {
+                val toDetail =
+                    HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
+                view?.findNavController()?.navigate(toDetail)
             }
+        })
 
-            override fun onFailure(call: Call<HotelsResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(TAG, "onFailure: ${t.message}")
+        horizontalAdapter.setOnItemClickCallback(object :
+            HotelHorizontalAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Hotel) {
+                val toDetail =
+                    HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
+                view?.findNavController()?.navigate(toDetail)
             }
         })
     }
 
-    fun showLoading(isLoading: Boolean) {
+    private fun showLoading(isLoading: Boolean) {
         if (isLoading)
             binding.progressBar.visibility = View.VISIBLE
         else
             binding.progressBar.visibility = View.GONE
     }
 
-    companion object {
-        private const val TAG = "HomeFragment"
-    }
 }
