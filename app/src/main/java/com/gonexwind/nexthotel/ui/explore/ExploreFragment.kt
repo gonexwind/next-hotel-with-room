@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.gonexwind.nexthotel.adapter.ExploreAdapter
 import com.gonexwind.nexthotel.adapter.HotelVerticalAdapter
 import com.gonexwind.nexthotel.api.ApiConfig
 import com.gonexwind.nexthotel.databinding.FragmentExploreBinding
+import com.gonexwind.nexthotel.model.Hotel
 import com.gonexwind.nexthotel.model.HotelsResponse
+import com.gonexwind.nexthotel.ui.home.HomeFragmentDirections
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,8 +53,17 @@ class ExploreFragment : Fragment() {
                 showLoading(false)
                 val responseBody = response.body()
                 if (responseBody != null) {
-                    val verticalAdapter = HotelVerticalAdapter(responseBody.data)
-                    binding.verticalRecyclerView.adapter = verticalAdapter
+                    val exploreAdapter = ExploreAdapter(responseBody.data)
+                    binding.verticalRecyclerView.adapter = exploreAdapter
+
+                    exploreAdapter.setOnItemClickCallback(object :
+                        ExploreAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: Hotel) {
+                            val toDetail = ExploreFragmentDirections.actionNavigationExploreToDetailFragment(data)
+                            view?.findNavController()?.navigate(toDetail)
+                        }
+                    })
+
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

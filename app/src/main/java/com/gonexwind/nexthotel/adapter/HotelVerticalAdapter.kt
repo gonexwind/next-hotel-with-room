@@ -31,8 +31,13 @@ class HotelVerticalAdapter(private val listHotel: List<Hotel>) :
                 rateTextView.text = rating
                 descTextView.text = description
                 priceTextView.text = priceRange
+
+                itemView.setOnClickListener {
+                    onItemClickCallback.onItemClicked(listHotel[adapterPosition])
+                }
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

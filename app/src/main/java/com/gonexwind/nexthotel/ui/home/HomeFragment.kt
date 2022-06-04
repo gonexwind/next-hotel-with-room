@@ -5,12 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gonexwind.nexthotel.adapter.HotelHorizontalAdapter
 import com.gonexwind.nexthotel.adapter.HotelVerticalAdapter
 import com.gonexwind.nexthotel.api.ApiConfig
 import com.gonexwind.nexthotel.databinding.FragmentHomeBinding
+import com.gonexwind.nexthotel.model.Hotel
 import com.gonexwind.nexthotel.model.HotelsResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,6 +61,24 @@ class HomeFragment : Fragment() {
                         verticalRecyclerView.adapter = verticalAdapter
                         horizontalRecyclerView.adapter = horizontalAdapter
                     }
+
+                    verticalAdapter.setOnItemClickCallback(object :
+                        HotelVerticalAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: Hotel) {
+                            val toDetail = HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
+                            view?.findNavController()?.navigate(toDetail)
+                            Toast.makeText(requireActivity(), "HARUSNYA BISA", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
+                    horizontalAdapter.setOnItemClickCallback(object :
+                        HotelHorizontalAdapter.OnItemClickCallback {
+                        override fun onItemClicked(data: Hotel) {
+                            val toDetail = HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
+                            view?.findNavController()?.navigate(toDetail)
+                        }
+                    })
+
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

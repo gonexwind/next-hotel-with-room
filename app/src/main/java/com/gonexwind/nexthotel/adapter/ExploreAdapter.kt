@@ -31,6 +31,10 @@ class ExploreAdapter(private val listHotel: List<Hotel>) :
                 rateTextView.text = rating
                 descTextView.text = description
                 priceTextView.text = priceRange
+
+                itemView.setOnClickListener {
+                    onItemClickCallback.onItemClicked(listHotel[adapterPosition])
+                }
             }
         }
     }

@@ -30,6 +30,10 @@ class HotelHorizontalAdapter(private val listHotel: List<Hotel>) :
                 cityTextView.text = city
                 rateTextView.text = rating
                 priceTextView.text = priceRange
+
+                itemView.setOnClickListener {
+                    onItemClickCallback.onItemClicked(listHotel[adapterPosition])
+                }
             }
         }
     }
