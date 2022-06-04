@@ -65,16 +65,17 @@ class HomeFragment : Fragment() {
                     verticalAdapter.setOnItemClickCallback(object :
                         HotelVerticalAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: Hotel) {
-                            val toDetail = HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
+                            val toDetail =
+                                HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
                             view?.findNavController()?.navigate(toDetail)
-                            Toast.makeText(requireActivity(), "HARUSNYA BISA", Toast.LENGTH_SHORT).show()
                         }
                     })
 
                     horizontalAdapter.setOnItemClickCallback(object :
                         HotelHorizontalAdapter.OnItemClickCallback {
                         override fun onItemClicked(data: Hotel) {
-                            val toDetail = HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
+                            val toDetail =
+                                HomeFragmentDirections.actionNavigationHomeToDetailFragment(data)
                             view?.findNavController()?.navigate(toDetail)
                         }
                     })
