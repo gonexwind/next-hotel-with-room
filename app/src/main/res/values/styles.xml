@@ -64,6 +64,6 @@
 
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
     </style>
 </resources>

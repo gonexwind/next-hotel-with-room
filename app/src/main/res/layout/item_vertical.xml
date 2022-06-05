@@ -25,7 +25,8 @@
                 android:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
+                android:layout_gravity="start|top"
                 style="@style/MyCardView"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     tools:text="Jogja" />
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
             <ImageButton
                 android:id="@+id/bookmarkButton"
