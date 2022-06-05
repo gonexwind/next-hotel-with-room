@@ -1,14 +1,16 @@
 package com.gonexwind.nexthotel
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.gonexwind.nexthotel.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,16 +23,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.navigation_home, R.id.navigation_explore, R.id.navigation_bookmarks
-//            )
-//        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
+
         navView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -44,5 +38,19 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = binding.searchView
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(q: String?): Boolean {
+                Toast.makeText(this@MainActivity, q, Toast.LENGTH_SHORT).show()
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean = false
+        })
     }
 }

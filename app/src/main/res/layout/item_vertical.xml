@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="130dp"
     android:layout_marginBottom="10dp"
-    android:layout_height="wrap_content"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,10 +26,10 @@
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <androidx.cardview.widget.CardView
-                android:layout_gravity="start|top"
                 style="@style/MyCardView"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
                 app:cardBackgroundColor="@color/main_color">
 
                 <TextView
@@ -64,6 +64,8 @@
                 style="@style/TextView.Card.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 tools:text="Jogja Hotel's" />
 
             <TextView
