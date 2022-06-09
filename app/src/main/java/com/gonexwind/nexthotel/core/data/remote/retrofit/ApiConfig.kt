@@ -1,6 +1,5 @@
-package com.gonexwind.nexthotel.api
+package com.gonexwind.nexthotel.core.data.remote.retrofit
 
-import android.os.Build
 import com.gonexwind.nexthotel.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

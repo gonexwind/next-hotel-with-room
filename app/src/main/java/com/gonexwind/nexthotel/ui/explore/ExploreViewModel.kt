@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gonexwind.nexthotel.api.ApiConfig
+import com.gonexwind.nexthotel.core.data.remote.retrofit.ApiConfig
 import com.gonexwind.nexthotel.model.Hotel
 import com.gonexwind.nexthotel.model.HotelsResponse
 import retrofit2.Call

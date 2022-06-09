@@ -1,6 +1,6 @@
-package com.gonexwind.nexthotel.api
+package com.gonexwind.nexthotel.core.data.remote.retrofit
 
-import com.gonexwind.nexthotel.model.HotelsResponse
+import com.gonexwind.nexthotel.core.data.remote.response.HotelsResponse
 import retrofit2.Call
 import retrofit2.http.GET
 

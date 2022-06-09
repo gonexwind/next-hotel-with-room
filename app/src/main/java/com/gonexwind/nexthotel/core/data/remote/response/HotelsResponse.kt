@@ -1,4 +1,4 @@
-package com.gonexwind.nexthotel.model
+package com.gonexwind.nexthotel.core.data.remote.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
