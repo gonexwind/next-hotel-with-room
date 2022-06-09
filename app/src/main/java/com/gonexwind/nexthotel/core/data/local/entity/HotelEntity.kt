@@ -1,9 +1,12 @@
 package com.gonexwind.nexthotel.core.data.local.entity
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "hotel")
+@Parcelize
 data class HotelEntity(
     @PrimaryKey val id: Int,
     val name: String,
@@ -13,4 +16,4 @@ data class HotelEntity(
     val description: String,
     val priceRange: String,
     var isBookmarked: Boolean,
-)
+) : Parcelable
