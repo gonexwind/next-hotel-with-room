@@ -42,6 +42,6 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="hotel"
-            app:argType="com.gonexwind.nexthotel.model.Hotel" />
+            app:argType="com.gonexwind.nexthotel.core.data.remote.response.Hotel" />
     </fragment>
 </navigation>
