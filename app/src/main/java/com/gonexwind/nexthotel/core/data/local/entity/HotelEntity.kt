@@ -9,8 +9,8 @@ data class HotelEntity(
     val name: String,
     val city: String,
     val imageUrl: String,
-    val rating: String,
+    val rate: String,
     val description: String,
     val priceRange: String,
-    val isBookmarked: Boolean,
+    var isBookmarked: Boolean,
 )

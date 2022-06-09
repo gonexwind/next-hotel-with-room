@@ -42,6 +42,6 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="hotel"
-            app:argType="com.gonexwind.nexthotel.core.data.remote.response.Hotel" />
+            app:argType="package com.gonexwind.nexthotel.core.data.local.entity.HotelEntity" />
     </fragment>
 </navigation>

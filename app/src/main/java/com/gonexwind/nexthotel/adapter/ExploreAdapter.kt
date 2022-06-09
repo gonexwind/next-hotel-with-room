@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.gonexwind.nexthotel.core.data.remote.response.Hotel
+import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
 import com.gonexwind.nexthotel.databinding.ItemVerticalBinding
 
-class ExploreAdapter(private val listHotel: List<Hotel>) :
+class ExploreAdapter(private val listHotel: List<HotelEntity>) :
     RecyclerView.Adapter<ExploreAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: Hotel)
+        fun onItemClicked(data: HotelEntity)
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -22,7 +22,7 @@ class ExploreAdapter(private val listHotel: List<Hotel>) :
 
     inner class ViewHolder(private val binding: ItemVerticalBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(hotel: Hotel) {
+        fun bind(hotel: HotelEntity) {
             val (_, name, city, imageUrl, rating, description, priceRange) = hotel
             binding.apply {
                 imageView.load(imageUrl)
