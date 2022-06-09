@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.gonexwind.nexthotel.core.data.remote.response.Hotel
 import com.gonexwind.nexthotel.databinding.ItemVerticalBinding
-import com.gonexwind.nexthotel.model.Hotel
 
 class ExploreAdapter(private val listHotel: List<Hotel>) :
     RecyclerView.Adapter<ExploreAdapter.ViewHolder>() {

@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.gonexwind.nexthotel.adapter.ExploreAdapter
+import com.gonexwind.nexthotel.core.data.remote.response.Hotel
 import com.gonexwind.nexthotel.databinding.FragmentExploreBinding
-import com.gonexwind.nexthotel.model.Hotel
 
 class ExploreFragment : Fragment() {
 

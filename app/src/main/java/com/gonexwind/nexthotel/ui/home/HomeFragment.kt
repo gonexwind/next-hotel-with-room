@@ -9,8 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.gonexwind.nexthotel.adapter.HotelHorizontalAdapter
 import com.gonexwind.nexthotel.adapter.HotelVerticalAdapter
+import com.gonexwind.nexthotel.core.data.remote.response.Hotel
 import com.gonexwind.nexthotel.databinding.FragmentHomeBinding
-import com.gonexwind.nexthotel.model.Hotel
 
 class HomeFragment : Fragment() {
 
