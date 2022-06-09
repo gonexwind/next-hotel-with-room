@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("hotel-data")
-    fun getListHotel(): HotelsResponse
+    suspend fun getListHotel(): HotelsResponse
 }

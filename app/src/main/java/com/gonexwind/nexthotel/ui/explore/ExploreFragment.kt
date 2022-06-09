@@ -1,6 +1,7 @@
 package com.gonexwind.nexthotel.ui.explore
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,7 @@ class ExploreFragment : Fragment() {
                             "Please Check Your Internet",
                             Toast.LENGTH_SHORT
                         ).show()
+                        Log.d("ERROR:", it.error)
                     }
                 }
             }

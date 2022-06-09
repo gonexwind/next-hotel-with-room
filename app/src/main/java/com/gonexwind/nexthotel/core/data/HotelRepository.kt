@@ -3,6 +3,7 @@ package com.gonexwind.nexthotel.core.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
 import com.gonexwind.nexthotel.core.data.local.room.HotelDao
 import com.gonexwind.nexthotel.core.data.remote.retrofit.ApiService
@@ -36,6 +37,10 @@ class HotelRepository private constructor(
             Log.d("HotelRepository", "getListHotel: ${e.message.toString()}")
             emit(Result.Error(e.message.toString()))
         }
+
+        val localData: LiveData<Result<List<HotelEntity>>> =
+            hotelDao.getHotels().map { Result.Success(it) }
+        emitSource(localData)
     }
 
     fun getBookmarkedHotel(): LiveData<List<HotelEntity>> = hotelDao.getBookmarkedHotel()
