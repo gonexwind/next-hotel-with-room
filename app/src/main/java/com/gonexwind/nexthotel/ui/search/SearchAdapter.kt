@@ -1,4 +1,4 @@
-package com.gonexwind.nexthotel.ui
+package com.gonexwind.nexthotel.ui.search
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

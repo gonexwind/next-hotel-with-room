@@ -14,11 +14,13 @@ import com.gonexwind.nexthotel.core.data.Result
 import com.gonexwind.nexthotel.core.ui.ViewModelFactory
 import com.gonexwind.nexthotel.databinding.ActivityMainBinding
 import com.gonexwind.nexthotel.ui.home.BestPickAdapter
+import com.gonexwind.nexthotel.ui.search.SearchViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,27 +28,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
-        val navController = navHostFragment.navController
+        bottomNavigation()
+        searchView()
+    }
 
-        navView.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.detailFragment -> {
-                    navView.visibility = View.GONE
-                    binding.topBar.visibility = View.GONE
-                }
-                else -> {
-                    navView.visibility = View.VISIBLE
-                    binding.topBar.visibility = View.VISIBLE
-                }
-            }
-        }
-
+    private fun searchView() {
         val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
-        val viewModel: MainViewModel by viewModels { factory }
+        val viewModel: SearchViewModel by viewModels { factory }
 
         val adapter = BestPickAdapter {
             if (it.isBookmarked) viewModel.deleteHotel(it) else viewModel.saveHotel(it)
@@ -85,6 +73,28 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(p0: String?): Boolean = false
         })
+    }
+
+    private fun bottomNavigation() {
+        val navView: BottomNavigationView = binding.navView
+        navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.detailFragment -> {
+                    navView.visibility = View.GONE
+                    binding.topBar.visibility = View.GONE
+                }
+                R.id.navigation_bookmarks -> binding.topBar.visibility = View.GONE
+                else -> {
+                    navView.visibility = View.VISIBLE
+                    binding.topBar.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     private fun showSearchLoading(isLoading: Boolean) {
