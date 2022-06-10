@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.gonexwind.nexthotel.core.ui.ViewModelFactory
 import com.gonexwind.nexthotel.databinding.FragmentBookmarksBinding
-import com.gonexwind.nexthotel.ui.home.HotelVerticalAdapter
 
 class BookmarksFragment : Fragment() {
 
@@ -34,7 +33,7 @@ class BookmarksFragment : Fragment() {
         val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
         val viewModel: BookmarkViewModel by viewModels { factory }
 
-        val hotelAdapter = HotelVerticalAdapter {
+        val hotelAdapter = BookmarkAdapter {
             if (it.isBookmarked) viewModel.deleteHotel(it) else viewModel.saveHotel(it)
         }
 
@@ -43,6 +42,6 @@ class BookmarksFragment : Fragment() {
             hotelAdapter.submitList(it)
         }
 
-        binding.verticalRecyclerView.adapter = hotelAdapter
+        binding.bookmarkRecyclerView.adapter = hotelAdapter
     }
 }

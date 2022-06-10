@@ -7,7 +7,7 @@ import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
 import kotlinx.coroutines.launch
 
 class ExploreViewModel(private val hotelRepository: HotelRepository) : ViewModel() {
-    fun getListHotel() = hotelRepository.getListHotel()
+    fun getExplore() = hotelRepository.getExplore()
 
     fun saveHotel(hotel: HotelEntity) {
         viewModelScope.launch {

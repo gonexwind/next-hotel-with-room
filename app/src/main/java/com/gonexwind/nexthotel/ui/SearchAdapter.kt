@@ -1,4 +1,4 @@
-package com.gonexwind.nexthotel.ui.explore
+package com.gonexwind.nexthotel.ui
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -14,8 +14,8 @@ import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
 import com.gonexwind.nexthotel.databinding.ItemVerticalBinding
 import com.gonexwind.nexthotel.ui.home.HomeFragmentDirections
 
-class ExploreAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
-    ListAdapter<HotelEntity, ExploreAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class SearchAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
+    ListAdapter<HotelEntity, SearchAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
@@ -55,7 +55,7 @@ class ExploreAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
 
                 itemView.setOnClickListener {
                     val toDetail =
-                        ExploreFragmentDirections.actionNavigationExploreToDetailFragment(hotel)
+                        HomeFragmentDirections.actionNavigationHomeToDetailFragment(hotel)
                     it.findNavController().navigate(toDetail)
                 }
             }

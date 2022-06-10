@@ -13,7 +13,7 @@ class HotelRepository private constructor(
     private val hotelDao: HotelDao,
 ) {
 
-    fun getListHotel(): LiveData<Result<List<HotelEntity>>> = liveData {
+    fun getBestPick(): LiveData<Result<List<HotelEntity>>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.getListHotel()
@@ -39,8 +39,94 @@ class HotelRepository private constructor(
         }
 
         val localData: LiveData<Result<List<HotelEntity>>> =
-            hotelDao.getHotels().map { Result.Success(it) }
+            hotelDao.getBestPick().map { Result.Success(it) }
         emitSource(localData)
+    }
+
+    fun getHotelForYou(): LiveData<Result<List<HotelEntity>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getListHotel()
+            val hotels = response.data
+            val hotelList = hotels.map {
+                val isBookmarked = hotelDao.isHotelBookmarked(it.id)
+                HotelEntity(
+                    it.id,
+                    it.name,
+                    it.city,
+                    it.imageUrl,
+                    it.rate,
+                    it.description,
+                    it.priceRange,
+                    isBookmarked
+                )
+            }
+            hotelDao.deleteAll()
+            hotelDao.insertHotel(hotelList)
+        } catch (e: Exception) {
+            Log.d("HotelRepository", "getListHotel: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+
+        val localData: LiveData<Result<List<HotelEntity>>> =
+            hotelDao.getHotelForYou().map { Result.Success(it) }
+        emitSource(localData)
+    }
+
+    fun getExplore(): LiveData<Result<List<HotelEntity>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getListHotel()
+            val hotels = response.data
+            val hotelList = hotels.map {
+                val isBookmarked = hotelDao.isHotelBookmarked(it.id)
+                HotelEntity(
+                    it.id,
+                    it.name,
+                    it.city,
+                    it.imageUrl,
+                    it.rate,
+                    it.description,
+                    it.priceRange,
+                    isBookmarked
+                )
+            }
+            hotelDao.deleteAll()
+            hotelDao.insertHotel(hotelList)
+        } catch (e: Exception) {
+            Log.d("HotelRepository", "getListHotel: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+
+        val localData: LiveData<Result<List<HotelEntity>>> =
+            hotelDao.getExplore().map { Result.Success(it) }
+        emitSource(localData)
+    }
+
+    fun searchHotel(query: String): LiveData<Result<List<HotelEntity>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.searchHotel(query)
+            val hotels = response.data
+            val hotelList = hotels.map {
+                val isBookmarked = hotelDao.isHotelBookmarked(it.id)
+                HotelEntity(
+                    it.id,
+                    it.name,
+                    it.city,
+                    it.imageUrl,
+                    it.rate,
+                    it.description,
+                    it.priceRange,
+                    isBookmarked
+                )
+            }
+            hotelDao.deleteAll()
+            hotelDao.insertHotel(hotelList)
+        } catch (e: Exception) {
+            Log.d("HotelRepository", "searchHotel: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
     }
 
     fun getBookmarkedHotel(): LiveData<List<HotelEntity>> = hotelDao.getBookmarkedHotel()

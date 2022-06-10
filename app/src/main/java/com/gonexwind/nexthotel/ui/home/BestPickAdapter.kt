@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.gonexwind.nexthotel.R
 import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
-import com.gonexwind.nexthotel.databinding.ItemHorizontalBinding
+import com.gonexwind.nexthotel.databinding.ItemVerticalBinding
 
-class HotelHorizontalAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
-    ListAdapter<HotelEntity, HotelHorizontalAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class BestPickAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
+    ListAdapter<HotelEntity, BestPickAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
-            ItemHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -39,16 +39,17 @@ class HotelHorizontalAdapter(private val onBookmarkClick: (HotelEntity) -> Unit)
         bookmarkButton.setOnClickListener { onBookmarkClick(hotel) }
     }
 
-    class MyViewHolder(val binding: ItemHorizontalBinding) :
+    class MyViewHolder(val binding: ItemVerticalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(hotel: HotelEntity) {
-            val (_, name, city, imageUrl, rate, _, priceRange) = hotel
+            val (_, name, city, imageUrl, rate, description, priceRange) = hotel
             binding.apply {
                 imageView.load(imageUrl)
                 nameTextView.text = name
                 cityTextView.text = city
                 rateTextView.text = rate
+                descTextView.text = description
                 priceTextView.text = priceRange
 
                 itemView.setOnClickListener {

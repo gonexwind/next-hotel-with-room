@@ -36,22 +36,22 @@ class HomeFragment : Fragment() {
         val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
         val viewModel: HomeViewModel by viewModels { factory }
 
-        val hotelVerticalAdapter = HotelVerticalAdapter {
-            if (it.isBookmarked) viewModel.deleteHotel(it) else viewModel.saveHotel(it)
-        }
-        val hotelHorizontalAdapter = HotelHorizontalAdapter {
+        val bestPickAdapter = BestPickAdapter {
             if (it.isBookmarked) viewModel.deleteHotel(it) else viewModel.saveHotel(it)
         }
 
-        viewModel.getListHotel().observe(viewLifecycleOwner) {
+        val hotelForYouAdapter = HotelForYouAdapter {
+            if (it.isBookmarked) viewModel.deleteHotel(it) else viewModel.saveHotel(it)
+        }
+
+        viewModel.getBestPick().observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it) {
                     is Result.Loading -> showLoading(true)
                     is Result.Success -> {
                         showLoading(false)
                         val hotelData = it.data
-                        hotelVerticalAdapter.submitList(hotelData)
-                        hotelHorizontalAdapter.submitList(hotelData)
+                        bestPickAdapter.submitList(hotelData)
                     }
                     is Result.Error -> {
                         showLoading(true)
@@ -65,8 +65,29 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.verticalRecyclerView.adapter = hotelVerticalAdapter
-        binding.horizontalRecyclerView.adapter = hotelHorizontalAdapter
+        viewModel.getHotelForYou().observe(viewLifecycleOwner) {
+            if (it != null) {
+                when (it) {
+                    is Result.Loading -> showLoading(true)
+                    is Result.Success -> {
+                        showLoading(false)
+                        val hotelData = it.data
+                        hotelForYouAdapter.submitList(hotelData)
+                    }
+                    is Result.Error -> {
+                        showLoading(true)
+                        Toast.makeText(
+                            context,
+                            "Please Check Your Internet",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
+
+        binding.bestPickRecyclerView.adapter = bestPickAdapter
+        binding.hotelForYouRecyclerView.adapter = hotelForYouAdapter
     }
 
     private fun showLoading(isLoading: Boolean) {

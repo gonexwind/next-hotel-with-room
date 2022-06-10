@@ -1,4 +1,4 @@
-package com.gonexwind.nexthotel.ui.home
+package com.gonexwind.nexthotel.ui.bookmarks
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -12,9 +12,10 @@ import coil.load
 import com.gonexwind.nexthotel.R
 import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
 import com.gonexwind.nexthotel.databinding.ItemVerticalBinding
+import com.gonexwind.nexthotel.ui.home.HomeFragmentDirections
 
-class HotelVerticalAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
-    ListAdapter<HotelEntity, HotelVerticalAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class BookmarkAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
+    ListAdapter<HotelEntity, BookmarkAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
@@ -54,7 +55,7 @@ class HotelVerticalAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
 
                 itemView.setOnClickListener {
                     val toDetail =
-                        HomeFragmentDirections.actionNavigationHomeToDetailFragment(hotel)
+                        BookmarksFragmentDirections.actionNavigationBookmarksToDetailFragment(hotel)
                     it.findNavController().navigate(toDetail)
                 }
             }

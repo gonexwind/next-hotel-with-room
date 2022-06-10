@@ -7,7 +7,13 @@ import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
 @Dao
 interface HotelDao {
     @Query("SELECT * FROM hotel ORDER BY name DESC")
-    fun getHotels(): LiveData<List<HotelEntity>>
+    fun getHotelForYou(): LiveData<List<HotelEntity>>
+
+    @Query("SELECT * FROM hotel ORDER BY name DESC")
+    fun getBestPick(): LiveData<List<HotelEntity>>
+
+    @Query("SELECT * FROM hotel ORDER BY name DESC")
+    fun getExplore(): LiveData<List<HotelEntity>>
 
     @Query("SELECT * FROM hotel WHERE isBookmarked = 1")
     fun getBookmarkedHotel(): LiveData<List<HotelEntity>>

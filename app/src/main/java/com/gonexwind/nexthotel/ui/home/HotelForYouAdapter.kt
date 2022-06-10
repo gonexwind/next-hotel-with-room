@@ -1,4 +1,4 @@
-package com.gonexwind.nexthotel.ui.explore
+package com.gonexwind.nexthotel.ui.home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -11,15 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.gonexwind.nexthotel.R
 import com.gonexwind.nexthotel.core.data.local.entity.HotelEntity
-import com.gonexwind.nexthotel.databinding.ItemVerticalBinding
-import com.gonexwind.nexthotel.ui.home.HomeFragmentDirections
+import com.gonexwind.nexthotel.databinding.ItemHorizontalBinding
 
-class ExploreAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
-    ListAdapter<HotelEntity, ExploreAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class HotelForYouAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
+    ListAdapter<HotelEntity, HotelForYouAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
-            ItemVerticalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemHorizontalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -40,22 +39,21 @@ class ExploreAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
         bookmarkButton.setOnClickListener { onBookmarkClick(hotel) }
     }
 
-    class MyViewHolder(val binding: ItemVerticalBinding) :
+    class MyViewHolder(val binding: ItemHorizontalBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(hotel: HotelEntity) {
-            val (_, name, city, imageUrl, rate, description, priceRange) = hotel
+            val (_, name, city, imageUrl, rate, _, priceRange) = hotel
             binding.apply {
                 imageView.load(imageUrl)
                 nameTextView.text = name
                 cityTextView.text = city
                 rateTextView.text = rate
-                descTextView.text = description
                 priceTextView.text = priceRange
 
                 itemView.setOnClickListener {
                     val toDetail =
-                        ExploreFragmentDirections.actionNavigationExploreToDetailFragment(hotel)
+                        HomeFragmentDirections.actionNavigationHomeToDetailFragment(hotel)
                     it.findNavController().navigate(toDetail)
                 }
             }

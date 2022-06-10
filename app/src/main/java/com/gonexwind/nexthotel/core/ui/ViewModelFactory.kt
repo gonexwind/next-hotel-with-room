@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gonexwind.nexthotel.core.data.HotelRepository
 import com.gonexwind.nexthotel.core.di.Injection
+import com.gonexwind.nexthotel.ui.MainViewModel
 import com.gonexwind.nexthotel.ui.bookmarks.BookmarkViewModel
 import com.gonexwind.nexthotel.ui.explore.ExploreViewModel
 import com.gonexwind.nexthotel.ui.home.HomeViewModel
@@ -15,6 +16,9 @@ class ViewModelFactory private constructor(private val hotelRepository: HotelRep
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(hotelRepository) as T
+            }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(hotelRepository) as T
             }

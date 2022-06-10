@@ -40,7 +40,7 @@ class ExploreFragment : Fragment() {
             if (it.isBookmarked) viewModel.deleteHotel(it) else viewModel.saveHotel(it)
         }
 
-        viewModel.getListHotel().observe(viewLifecycleOwner) {
+        viewModel.getExplore().observe(viewLifecycleOwner) {
             if (it != null) {
                 when (it) {
                     is Result.Loading -> showLoading(true)
