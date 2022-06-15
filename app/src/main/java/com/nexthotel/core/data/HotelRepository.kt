@@ -27,7 +27,7 @@ class HotelRepository private constructor(
                     it.name,
                     it.city,
                     it.imageUrl,
-                    it.rate,
+                    it.rate.toString(),
                     it.description,
                     it.priceRange,
                     isBookmarked
@@ -57,7 +57,7 @@ class HotelRepository private constructor(
                     it.name,
                     it.city,
                     it.imageUrl,
-                    it.rate,
+                    it.rate.toString(),
                     it.description,
                     it.priceRange,
                     isBookmarked
@@ -87,7 +87,7 @@ class HotelRepository private constructor(
                     it.name,
                     it.city,
                     it.imageUrl,
-                    it.rate,
+                    it.rate.toString(),
                     it.description,
                     it.priceRange,
                     isBookmarked
@@ -115,7 +115,7 @@ class HotelRepository private constructor(
                 it.name,
                 it.city,
                 it.imageUrl,
-                it.rate,
+                it.rate.toString(),
                 it.description,
                 it.priceRange,
                 isBookmarked
