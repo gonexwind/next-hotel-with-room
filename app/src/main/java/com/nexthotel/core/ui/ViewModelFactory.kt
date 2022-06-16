@@ -15,14 +15,14 @@ class ViewModelFactory private constructor(private val hotelRepository: HotelRep
     ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(model: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            model.isAssignableFrom(SearchViewModel::class.java) -> SearchViewModel(hotelRepository) as T
-            model.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(hotelRepository) as T
-            model.isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(hotelRepository) as T
-            model.isAssignableFrom(ExploreViewModel::class.java) -> ExploreViewModel(hotelRepository) as T
-            model.isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(hotelRepository) as T
-            else -> throw IllegalArgumentException("Unknown ViewModel class: " + model.name)
+            modelClass.isAssignableFrom(SearchViewModel::class.java) -> SearchViewModel(hotelRepository) as T
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(hotelRepository) as T
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(hotelRepository) as T
+            modelClass.isAssignableFrom(ExploreViewModel::class.java) -> ExploreViewModel(hotelRepository) as T
+            modelClass.isAssignableFrom(BookmarkViewModel::class.java) -> BookmarkViewModel(hotelRepository) as T
+            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
 

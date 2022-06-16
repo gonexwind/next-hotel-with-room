@@ -51,9 +51,9 @@ class BookmarkAdapter(private val onBookmarkClick: (HotelEntity) -> Unit) :
                 priceTextView.text = hotel.priceRange
 
                 itemView.setOnClickListener {
-                    val detail = BookmarksFragmentDirections
+                    val destination = BookmarksFragmentDirections
                         .actionNavigationBookmarksToDetailFragment(hotel)
-                    it.findNavController().navigate(detail)
+                    it.findNavController().navigate(destination)
                 }
             }
         }

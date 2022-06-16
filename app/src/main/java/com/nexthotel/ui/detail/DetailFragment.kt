@@ -5,18 +5,21 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.MediaStore.Images.Media.insertImage
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import coil.load
 import com.nexthotel.R
 import com.nexthotel.core.data.local.entity.HotelEntity
 import com.nexthotel.core.ui.ViewModelFactory
 import com.nexthotel.core.utils.Utils.toast
 import com.nexthotel.databinding.FragmentDetailBinding
+import com.nexthotel.ui.bookmarks.BookmarksFragmentDirections
 
 class DetailFragment : Fragment() {
 
@@ -54,6 +57,11 @@ class DetailFragment : Fragment() {
             priceTextView.text = hotel.priceRange
             hotelStars.numStars = hotel.stars.toInt()
 
+            facilityButton.setOnClickListener {
+                val destination = DetailFragmentDirections
+                    .actionDetailFragmentToFacilityFragment(hotel)
+                it.findNavController().navigate(destination)
+            }
             backButton.setOnClickListener { activity?.onBackPressed() }
             shareButton.setOnClickListener { share(hotel) }
             bookmarkButton.apply {
@@ -88,8 +96,7 @@ class DetailFragment : Fragment() {
         val resolver = requireActivity().contentResolver
         val bitmapDrawable = binding.imageView.drawable as BitmapDrawable
         val bitmap = bitmapDrawable.bitmap
-        val bitmapPath = MediaStore.Images.Media
-            .insertImage(resolver, bitmap, "some title", "some desc")
+        val bitmapPath = insertImage(resolver, bitmap, "some title", "some desc")
         val bitmapUri = Uri.parse(bitmapPath)
         val shareIntent = Intent().apply {
             this.action = Intent.ACTION_SEND

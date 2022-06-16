@@ -27,4 +27,6 @@
     <string name="rateDetail">%s rate</string>
     <string name="reviewsDetail">from %s reviews</string>
     <string name="hotels" translatable="false">Hotels</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

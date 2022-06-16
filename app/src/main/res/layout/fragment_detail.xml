@@ -155,7 +155,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/see_all_facilities"
                 android:textAllCaps="false" />
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
