@@ -33,21 +33,21 @@ class FacilityFragment : Fragment() {
         binding.apply {
             backButton.setOnClickListener { activity?.onBackPressed() }
 
-            placesNearbyTextView.text = hotel.placesNearby ?: "-"
-            foodDrinkTextView.text = hotel.foodAndDrinksList ?: "-"
-            hotelServicesTextView.text = hotel.hotelServicesList ?: "-"
-            transportationTextView.text = hotel.transportationList ?: "-"
-            generalTextView.text = hotel.generalList ?: "-"
-            accessibilityTextView.text = hotel.accessibiltyList ?: "-"
-            businessTextView.text = hotel.businessFacilitiesList ?: "-"
-            nearbyTextView.text = hotel.nearbyFacilitiesList ?: "-"
-            sportsTextView.text = hotel.sportsAndRecreationsList ?: "-"
-            kidsTextView.text = hotel.kidsAndPetsList ?: "-"
-            thingsTextView.text = hotel.thingsToDoList ?: "-"
-            connectivityTextView.text = hotel.connectivityList ?: "-"
-            publicTextView.text = hotel.publicFacilitiesList ?: "-"
-            shuttleTextView.text = hotel.shuttleServiceList ?: "-"
-            inRoomTextView.text = hotel.inRoomFacilitiesList ?: "-"
+            placesNearbyTextView.text = hotel.placesNearby
+            foodDrinkTextView.text = hotel.foodAndDrinksList
+            hotelServicesTextView.text = hotel.hotelServicesList
+            transportationTextView.text = hotel.transportationList
+            generalTextView.text = hotel.generalList
+            accessibilityTextView.text = hotel.accessibiltyList
+            businessTextView.text = hotel.businessFacilitiesList
+            nearbyTextView.text = hotel.nearbyFacilitiesList
+            sportsTextView.text = hotel.sportsAndRecreationsList
+            kidsTextView.text = hotel.kidsAndPetsList
+            thingsTextView.text = hotel.thingsToDoList
+            connectivityTextView.text = hotel.connectivityList
+            publicTextView.text = hotel.publicFacilitiesList
+            shuttleTextView.text = hotel.shuttleServiceList
+            inRoomTextView.text = hotel.inRoomFacilitiesList
         }
     }
 }

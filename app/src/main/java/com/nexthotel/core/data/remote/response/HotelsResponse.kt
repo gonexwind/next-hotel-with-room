@@ -18,7 +18,6 @@ data class Hotel(
     @SerializedName("description") val description: String,
     @SerializedName("harga") val priceRange: String,
     @SerializedName("reviews") val reviews: String,
-    @SerializedName("facil_+_akomod") val facilAkomod: String?,
     @SerializedName("accessibilty_list") val accessibiltyList: String?,
     @SerializedName("places_nearby") val placesNearby: String?,
     @SerializedName("sports_and_recreations_list") val sportsAndRecreationsList: String?,

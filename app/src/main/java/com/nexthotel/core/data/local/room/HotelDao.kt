@@ -15,18 +15,18 @@ interface HotelDao {
     @Query("SELECT * FROM hotel ORDER BY id")
     fun getExplore(): LiveData<List<HotelEntity>>
 
-    @Query("SELECT * FROM hotel WHERE isBookmarked = 1")
+    @Query("SELECT * FROM hotel WHERE isBookmarked=1")
     fun getBookmarkedHotel(): LiveData<List<HotelEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertHotel(hotel: List<HotelEntity>)
+    fun insertHotel(hotel: List<HotelEntity>)
 
     @Update
-    suspend fun updateHotel(hotel: HotelEntity)
+    fun updateHotel(hotel: HotelEntity)
 
     @Query("DELETE FROM hotel WHERE isBookmarked=0")
-    suspend fun deleteAll()
+    fun deleteAll()
 
     @Query("SELECT EXISTS(SELECT * FROM hotel WHERE id=:id AND isBookmarked=1)")
-    suspend fun isHotelBookmarked(id: Int): Boolean
+    fun isHotelBookmarked(id: Int): Boolean
 }

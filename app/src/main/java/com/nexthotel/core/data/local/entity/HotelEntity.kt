@@ -17,7 +17,6 @@ data class HotelEntity(
     val priceRange: String,
     val stars: String,
     val reviews: String,
-    val facilAkomod: String?,
     val accessibiltyList: String?,
     val placesNearby: String?,
     val sportsAndRecreationsList: String?,
