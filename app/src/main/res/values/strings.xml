@@ -27,6 +27,19 @@
     <string name="rateDetail">%s rate</string>
     <string name="reviewsDetail">from %s reviews</string>
     <string name="hotels" translatable="false">Hotels</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_facilities">All Facilities</string>
+    <string name="places_nearby">Places Nearby</string>
+    <string name="food_and_drinks">Food and Drinks</string>
+    <string name="hotel_services">Hotel Services</string>
+    <string name="transportation">Transportation</string>
+    <string name="accessibility">Accessibility</string>
+    <string name="business_facilities">Business Facilities</string>
+    <string name="nearby_facilities">Nearby Facilities</string>
+    <string name="sports_and_recreations">Sports and Recreations</string>
+    <string name="kids_and_pets">Kids and Pets</string>
+    <string name="things_to_do">Things To Do</string>
+    <string name="connectivity">Connectivity</string>
+    <string name="public_facilities">Public Facilities</string>
+    <string name="shuttle_service">Shuttle Service</string>
+    <string name="in_room_facilities">In-room Facilities</string>
 </resources>
