@@ -22,4 +22,5 @@
     <string name="theme">Theme</string>
     <string name="languages">Languages</string>
     <string name="not_found_text">Oopps...!\nHotels Not Found</string>
+    <string name="check_internet">Please Check Your Internet Connection</string>
 </resources>
