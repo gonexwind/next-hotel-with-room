@@ -101,7 +101,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:progressTint="#FFC54D"
-                    android:rating="3" />
+                    android:progressBackgroundTint="#808080"
+                    android:numStars="5" />
             </LinearLayout>
 
             <TextView

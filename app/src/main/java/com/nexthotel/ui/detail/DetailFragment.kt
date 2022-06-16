@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images.Media.insertImage
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,7 @@ class DetailFragment : Fragment() {
             reviewTextView.text = resources.getString(R.string.reviewsDetail, hotel.reviews)
             descTextView.text = hotel.description
             priceTextView.text = hotel.priceRange
-            hotelStars.numStars = hotel.stars.toInt()
+            hotelStars.rating = hotel.stars.toFloat()
 
             facilityButton.setOnClickListener {
                 val destination = DetailFragmentDirections
