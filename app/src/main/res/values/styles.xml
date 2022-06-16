@@ -35,6 +35,7 @@
     </style>
 
     <style name="TextView.Card.Price">
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/main_color</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
@@ -58,6 +59,7 @@
     </style>
 
     <style name="TextView.Detail.Price">
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/main_color</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
