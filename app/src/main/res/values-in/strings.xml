@@ -39,4 +39,5 @@
     <string name="public_facilities">Fasilitas Publik</string>
     <string name="shuttle_service">Layanan Antar Jemput</string>
     <string name="in_room_facilities">Fasilitas Kamar</string>
+    <string name="search_hint">Cari hotel pilihanmu…</string>
 </resources>

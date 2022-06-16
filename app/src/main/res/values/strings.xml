@@ -42,4 +42,5 @@
     <string name="public_facilities">Public Facilities</string>
     <string name="shuttle_service">Shuttle Service</string>
     <string name="in_room_facilities">In-room Facilities</string>
+    <string name="search_hint">Find your hotels…</string>
 </resources>
