@@ -17,7 +17,7 @@ class HotelRepository private constructor(
     fun getBestPick(): LiveData<Result<List<HotelEntity>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getBestPicksHotels()
+            val response = apiService.getBestPick()
             val hotels = response.data
             val hotelList = hotels.map {
                 val isBookmarked = hotelDao.isHotelBookmarked(it.id)
@@ -48,6 +48,7 @@ class HotelRepository private constructor(
                     inRoomFacilitiesList = it.inRoomFacilitiesList,
                     hotelServicesList = it.hotelServicesList,
                     thingsToDoList = it.thingsToDoList,
+                    score = it.score,
                 )
             }
             hotelDao.deleteAll()
@@ -65,7 +66,7 @@ class HotelRepository private constructor(
     fun getHotelForYou(): LiveData<Result<List<HotelEntity>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getRecommendationHotels()
+            val response = apiService.getHotelForYou()
             val hotels = response.data
             val hotelList = hotels.map {
                 val isBookmarked = hotelDao.isHotelBookmarked(it.id)
@@ -96,6 +97,7 @@ class HotelRepository private constructor(
                     inRoomFacilitiesList = it.inRoomFacilitiesList,
                     hotelServicesList = it.hotelServicesList,
                     thingsToDoList = it.thingsToDoList,
+                    score = it.score,
                 )
             }
             hotelDao.deleteAll()
@@ -144,6 +146,7 @@ class HotelRepository private constructor(
                     inRoomFacilitiesList = it.inRoomFacilitiesList,
                     hotelServicesList = it.hotelServicesList,
                     thingsToDoList = it.thingsToDoList,
+                    score = it.score,
                 )
             }
             hotelDao.deleteAll()
@@ -190,6 +193,7 @@ class HotelRepository private constructor(
                 inRoomFacilitiesList = it.inRoomFacilitiesList,
                 hotelServicesList = it.hotelServicesList,
                 thingsToDoList = it.thingsToDoList,
+                score = it.score,
             )
         }
         return hotelList

@@ -65,8 +65,7 @@ class HomeFragment : Fragment() {
                     is Result.Loading -> showLoading(true)
                     is Result.Success -> {
                         showLoading(false)
-                        val hotelData = it.data
-                        bestPickAdapter.submitList(hotelData)
+                        bestPickAdapter.submitList(it.data)
                     }
                     is Result.Error -> {
                         showLoading(true)
@@ -82,8 +81,7 @@ class HomeFragment : Fragment() {
                     is Result.Loading -> showLoading(true)
                     is Result.Success -> {
                         showLoading(false)
-                        val hotelData = it.data
-                        hotelForYouAdapter.submitList(hotelData)
+                        hotelForYouAdapter.submitList(it.data)
                     }
                     is Result.Error -> {
                         showLoading(true)

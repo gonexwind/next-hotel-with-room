@@ -33,5 +33,6 @@ data class Hotel(
     @SerializedName("connectivity_list") val connectivityList: String?,
     @SerializedName("in-room_facilities_list") val inRoomFacilitiesList: String?,
     @SerializedName("hotel_services_list") val hotelServicesList: String?,
-    @SerializedName("things_to_do_list") val thingsToDoList: String?
+    @SerializedName("things_to_do_list") val thingsToDoList: String?,
+    @SerializedName("Score") val score: Double,
 )

@@ -33,6 +33,6 @@ data class HotelEntity(
     val inRoomFacilitiesList: String?,
     val hotelServicesList: String?,
     val thingsToDoList: String?,
-
+    val score: Double,
     var isBookmarked: Boolean,
 ) : Parcelable
