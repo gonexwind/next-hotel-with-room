@@ -9,10 +9,10 @@ interface ApiService {
     @GET("list-hotels")
     suspend fun getExploreHotel(): HotelsResponse
 
-    @GET("hotel-data/hotel-bestpicks")
+    @GET("hotel-bestpicks")
     suspend fun getBestPicksHotels(): HotelsResponse
 
-    @GET("hotel-data/list-hotels")
+    @GET("list-hotels")
     suspend fun getRecommendationHotels(): HotelsResponse
 
     @GET("list-hotels")

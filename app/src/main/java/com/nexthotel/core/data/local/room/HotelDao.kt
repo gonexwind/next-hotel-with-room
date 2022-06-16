@@ -6,10 +6,10 @@ import com.nexthotel.core.data.local.entity.HotelEntity
 
 @Dao
 interface HotelDao {
-    @Query("SELECT * FROM hotel ORDER BY name DESC")
+    @Query("SELECT * FROM hotel LIMIT 5")
     fun getHotelForYou(): LiveData<List<HotelEntity>>
 
-    @Query("SELECT * FROM hotel ORDER BY name DESC")
+    @Query("SELECT * FROM hotel LIMIT 5")
     fun getBestPick(): LiveData<List<HotelEntity>>
 
     @Query("SELECT * FROM hotel ORDER BY name DESC")
