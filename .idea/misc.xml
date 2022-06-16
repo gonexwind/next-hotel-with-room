@@ -14,10 +14,12 @@
         <entry key="app/src/main/res/drawable/ic_star.xml" value="0.1155" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_bookmarks.xml" value="0.15611814345991562" />
-        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.16573033707865167" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.16545532278751604" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.11306765523632993" />
+        <entry key="app/src/main/res/layout/item_expandable.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_horizontal.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_vertical.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />

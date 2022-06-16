@@ -48,9 +48,11 @@ class DetailFragment : Fragment() {
             imageView.load(hotel.imageUrl)
             nameTextView.text = hotel.name
             cityTextView.text = hotel.city
-            rateTextView.text = hotel.rate
+            rateTextView.text = resources.getString(R.string.rateDetail, hotel.rate)
+            reviewTextView.text = resources.getString(R.string.reviewsDetail, hotel.reviews)
             descTextView.text = hotel.description
             priceTextView.text = hotel.priceRange
+            hotelStars.numStars = hotel.stars.toInt()
 
             backButton.setOnClickListener { activity?.onBackPressed() }
             shareButton.setOnClickListener { share(hotel) }

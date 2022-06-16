@@ -21,4 +21,7 @@
     <string name="languages">Bahasa</string>
     <string name="not_found_text">Aduuch…!\nHotel Tidak Ditemukan</string>
     <string name="check_internet">Mohon cek koneksi internet kamu</string>
+    <string name="see_all_facilities">Lihat Semua Fasilitas</string>
+    <string name="rateDetail">%s1 penilain</string>
+    <string name="reviewsDetail">dari %s1 pengunjung</string>
 </resources>
