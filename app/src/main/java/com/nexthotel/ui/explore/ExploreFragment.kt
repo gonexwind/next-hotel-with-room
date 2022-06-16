@@ -1,6 +1,7 @@
 package com.nexthotel.ui.explore
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,7 @@ class ExploreFragment : Fragment() {
                     is Result.Error -> {
                         showLoading(true)
                         toast(requireActivity(), getString(R.string.check_internet))
+                        Log.d("ALHAMDULILLAH", it.error)
                     }
                 }
             }
